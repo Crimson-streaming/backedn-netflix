@@ -24,4 +24,4 @@ EXPOSE 8080
 # Commande de démarrage
 # Utiliser 0.0.0.0 pour écouter sur toutes les interfaces
 # Render gère automatiquement le routage vers le port 8080
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8080"]
+CMD sh -c "./pocketbase superuser upsert \"$ADMIN_EMAIL\" \"$ADMIN_PASSWORD\" && ./pocketbase serve --http=0.0.0.0:${PORT:-8080}"
