@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-# Installer les dépendances
+# Installer les dépendances nécessaires
 RUN apk add --no-cache \
     ca-certificates \
     wget \
@@ -10,6 +10,7 @@ RUN apk add --no-cache \
 WORKDIR /app
 
 # Télécharger PocketBase (version Linux pour Render)
+# Version 0.26.3 - modifiez si nécessaire
 RUN wget -q https://github.com/pocketbase/pocketbase/releases/download/v0.26.3/pocketbase_0.26.3_linux_amd64.zip \
     && unzip -q pocketbase_0.26.3_linux_amd64.zip \
     && chmod +x pocketbase \
@@ -18,10 +19,9 @@ RUN wget -q https://github.com/pocketbase/pocketbase/releases/download/v0.26.3/p
 # Créer le dossier pour les données
 RUN mkdir -p /app/pb_data
 
-# Exposer le port
+# Exposer le port 8080
 EXPOSE 8080
 
 # Commande de démarrage
 # Utiliser 0.0.0.0 pour écouter sur toutes les interfaces
-# Render gère automatiquement le routage vers le port 8080
-CMD sh -c "./pocketbase superuser upsert \"$ADMIN_EMAIL\" \"$ADMIN_PASSWORD\" && ./pocketbase serve --http=0.0.0.0:${PORT:-8080}"
+CMD ["./pocketbase", "serve", "--http=0.0.0.0:8080"]

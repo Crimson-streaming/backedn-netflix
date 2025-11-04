@@ -1,9 +1,7 @@
-# PocketBase pour Netflix Clone
+# PocketBase Backend pour Netflix Clone
 
-Déploiement PocketBase sur Render.
+Ce dossier contient la configuration Docker pour dÃ©ployer PocketBase sur Render.
 
-## Déploiement
+## DÃ©ploiement
 
-1. Connecter ce dépôt à Render
-2. Configurer comme Web Service avec Docker
-3. Déployer
+Voir le guide complet dans `GUIDE_COMPLET_POCKETBASE.md` Ã  la racine du projet.
